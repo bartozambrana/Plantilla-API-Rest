@@ -55,7 +55,8 @@ const UserSchema = Schema({
 //Lo utilizamos para eliminar los campos que no queremos que se observen
 //en el objeto json que vamos a devolver.
 UserSchema.methods.toJSON = function() {
-    const {__v,password,...user} = this.toObject();
+    const {__v,password,_id,...user} = this.toObject();
+    user.uid = _id;
     return user;
 }
 
